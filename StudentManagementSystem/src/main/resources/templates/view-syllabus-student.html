@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Syllabus</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d2aafa; /* Gradient background */
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        /* Left Half (Semester selection) */
+        .left-half {
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        /* Right Half (Syllabus Display) */
+        .right-half {
+            width: 50%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        .form-container {
+            margin-top: 20px;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .syllabus-container {
+            background-color: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .syllabus-container a {
+            font-size: 16px;
+            font-weight: bold;
+            color: #6a11cb;
+            text-decoration: none;
+        }
+
+        .syllabus-container a:hover {
+            color: #2575fc;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #fff; /* Back to Home button text color */
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #5477ee;
+            border-radius: 5px;
+        }
+
+        .back-link a:hover {
+            color: #2575fc;
+        }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+
+            .left-half, .right-half {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left Half (Semester selection) -->
+        <div class="left-half">
+            <h2>Select Semester to View Syllabus</h2>
+            <form action="/student/syllabus/semester" method="get" class="form-container">
+                <select name="semester" class="form-select" required>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-3" >View Syllabus</button>
+            </form>
+            <div class="back-link">
+                <a href="/student/home">Back to Home</a>
+            </div>
+        </div>
+
+        <!-- Right Half (Syllabus Display) -->
+        <div class="right-half">
+            <div th:if="${syllabusLink != null}" class="syllabus-container mt-5">
+                <h3>Syllabus for Semester <span th:text="${semester}"></span></h3>
+                <a th:href="${syllabusLink}" class="btn btn-link" target="_blank">Download Syllabus</a>
+            </div>
+
+            <!-- Error message if no syllabus is found -->
+            <div th:if="${error != null}" class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

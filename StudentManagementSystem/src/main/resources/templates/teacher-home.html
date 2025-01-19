@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teacher Home</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4; /* Light background for contrast */
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+        }
+
+        /* Left Section - Button Grid */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #9932CC; 
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 20px; /* Spacing between buttons */
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .button-grid a {
+            text-decoration: none;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-grid a:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+        /* Right Section - Image */
+        .right-section {
+            flex: 1;
+            background: url('https://t3.ftcdn.net/jpg/03/96/52/20/360_F_396522059_JoaNQiKYe6o8qsUYwtWlmBQK2oNMW77f.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .back-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6a11cb; /* Background color for the button */
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top:20px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .right-section {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <h2 class="text-white mb-4">Welcome, Teacher!</span></h2>
+            <div class="button-grid">
+                <a th:href="@{/teacher/addStudent}">Add Student</a>
+                <a th:href="@{/teacher/students}">View Students</a>
+                <a th:href="@{/teacher/addSyllabus}">Add Syllabus</a>
+                <a th:href="@{/teacher/viewSyllabus}">View Syllabus</a>
+                <a th:href="@{/teacher/addCourse}">Add Course</a>
+                <a th:href="@{/teacher/courses}">View Course</a>
+            </div>
+             <div class="back-link">
+                <a href="/login">Back to Login Page</a>
+    </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section"></div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

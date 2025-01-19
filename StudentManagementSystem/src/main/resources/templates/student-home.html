@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Home</title>
+    <style>
+        /* Styling for the semester selection form */
+        .semester-container {
+            margin-top: 50px;
+        }
+        .semester-container select, .semester-container button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome, Student</h2>
+
+    <div class="semester-container">
+        <h3>Select Your Semester</h3>
+        <!-- Semester selection form -->
+        <form th:action="@{/student/viewSyllabus}" method="post">
+            <label for="semester">Semester:</label>
+            <select id="semester" name="semester">
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+                <option value="7">Semester 7</option>
+                <option value="8">Semester 8</option>
+            </select>
+            <button type="submit">Show Syllabus</button>
+        </form>
+    </div>
+    
+    <hr>
+
+    <div th:if="${pdfUrl != null}">
+        <h3>Syllabus for Semester <span th:text="${semester}"></span></h3>
+        <a th:href="${pdfUrl}" target="_blank">View Syllabus (PDF)</a>
+    </div>
+
+    <!-- Error message if no syllabus is found -->
+    <div th:if="${error != null}">
+        <p style="color: red;" th:text="${error}"></p>
+    </div>
+</body>
+</html>
